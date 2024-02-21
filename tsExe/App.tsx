@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Unity ,useUnityContext} from 'react-unity-webgl';
+import WebView from 'react-native-webview';
+const localWebGL = require("./assets/release/index.html")
 export default function App() {
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={styles.webView}>
+      <WebView 
+        source={localWebGL}/>
     </View>
   );
 }
@@ -17,4 +20,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  webView:{
+    width:Dimensions.get('window').width,
+    height:Dimensions.get("window").height
+  }
 });

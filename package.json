@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "@biomejs/biome": "1.5.3"
+  },
+  "dependencies": {
+    "react-unity-webgl": "^9.5.0"
   }
 }
