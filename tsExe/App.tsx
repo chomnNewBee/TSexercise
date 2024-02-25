@@ -8,6 +8,14 @@ const localWebGL = require("./assets/release/index.html")
 export default function App() {
   const [fromUnity,setMessageFromUniyt] = React.useState('')
   
+  const switchMale = ()=>{
+    console.log("character1")
+    webview.postMessage("character1")
+  }
+  const switchFemale = ()=>{
+    console.log("character2")
+    webview.postMessage("character2")
+  }
 
 
 
@@ -18,7 +26,7 @@ export default function App() {
       webview.postMessage("toUnity")
   }
   
-const  handleFromUnity = (str:string)=>{
+  const  handleFromUnity = (str:string)=>{
     setMessageFromUniyt(str)
   }
   return (
@@ -28,10 +36,14 @@ const  handleFromUnity = (str:string)=>{
       onMessage={(e)=>{handleFromUnity(e.nativeEvent.data)}}
       ref={(ref)=>{webview=ref}}/>
 
+      <View style={styles.male}>
+        <Button title='character1' onPress={switchMale}/>
+      </View>
+
+      <View style={styles.female}>
+        <Button title='character2' onPress={switchFemale}/>
+      </View>
       
-      <Text>{`I am react native lable,this is message from unity:   ${fromUnity}`}</Text>
-      <Button title='React Native Button to rotate cube'
-      onPress={toUnity}/>
     </View>
   );
 }
@@ -45,6 +57,18 @@ const styles = StyleSheet.create({
   },
   webView:{
     width:Dimensions.get('window').width,
-    height:Dimensions.get("window").height/1.3
+    height:Dimensions.get("window").height
+  },
+  male:{
+    position:"absolute",
+    top:70,
+    width:100,
+    height:50
+  },
+  female:{
+    position:"absolute",
+    top:150,
+    width:100,
+    height:50
   }
 });

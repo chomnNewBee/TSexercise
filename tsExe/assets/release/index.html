@@ -113,7 +113,15 @@
             unityInstance.SetFullscreen(1);
           };
           document.addEventListener("message", (event) => {
-                unityInstance.SendMessage("testbutton","ToUnity")
+              let data = event.data
+              if(data == "character1"){
+                unityInstance.SendMessage("Canvas","SwitchToMale")
+              }
+              else if(data == "character2"){
+                unityInstance.SendMessage("Canvas","SwitchToFemale")
+
+              }
+                //unityInstance.SendMessage("testbutton","ToUnity")
           });
         }).catch((message) => {
           alert(message);
